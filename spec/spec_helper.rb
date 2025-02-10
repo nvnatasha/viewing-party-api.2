@@ -3,7 +3,16 @@
 # The generated `.rspec` file contains `--require spec_helper` which will cause
 # this file to always be loaded, without a need to explicitly require it in any
 # files.
-#
+#require 'vcr'
+require 'vcr'
+require 'webmock/rspec'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/vcr_cassettes" 
+  config.hook_into :webmock 
+  config.configure_rspec_metadata! 
+  config.filter_sensitive_data('<TMDB_API_KEY>') { Rails.application.credentials.tmdb[:key] } 
+end
 # Given that it is always loaded, you are encouraged to keep this file as
 # light-weight as possible. Requiring heavyweight dependencies from this file
 # will add to the boot time of your test suite on EVERY test run, even for an
@@ -92,3 +101,4 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
