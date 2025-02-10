@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+User.destroy_all
 
 User.create!(name: "Danny DeVito", username: "danny_de_v", password: "jerseyMikesRox7")
 User.create!(name: "Dolly Parton", username: "dollyP", password: "Jolene123")
